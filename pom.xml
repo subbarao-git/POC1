@@ -31,6 +31,10 @@
         <!-- Sonar properties -->
         <sonar.projectKey>my-java-app</sonar.projectKey>
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+         <maven.compiler.source>17</maven.compiler.source>
+         <maven.compiler.target>17</maven.compiler.target>
+         <maven.compiler.release>17</maven.compiler.release>
+
     </properties>
 
     <!-- Dependencies -->
