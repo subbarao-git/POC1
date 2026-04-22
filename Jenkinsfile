@@ -68,7 +68,7 @@ pipeline {
                       docker stop myapp || true
                       docker rm myapp || true
                       docker run -d \
-                        --name myapp \
+                        --name my-java-app \
                         -p 8081:8080 \
                         $IMAGE_NAME
                     EOF
