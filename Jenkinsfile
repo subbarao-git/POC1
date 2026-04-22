@@ -25,9 +25,7 @@ pipeline {
                 withSonarQubeEnv("${SONAR_TOKEN}") {
                 sh """
                 mvn sonar:sonar \
-                -Dsonar.projectKey=my-java-app \
-                -Dsonar.host.url=http://172.31.40.130:9000 \
-                -Dsonar.login=$SONAR_TOKEN
+                -Dsonar.projectKey=my-java-app
                 """
                 }
             }
