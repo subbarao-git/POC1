@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "subbu2712/my-java-app"
+        DOCKER_IMAGE = "subbu2712/my-java-app1"
         SONAR_TOKEN = "SonarServer"
     }
 
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE'
+                sh 'docker build -t $DOCKER_IMAGE .'
             }
         }
 
