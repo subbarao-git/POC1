@@ -23,7 +23,10 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarServer') {
                 sh """
-                mvn sonar:sonar
+                mvn sonar:sonar \
+                -Dsonar.projectKey=my-java-app \
+                -Dsonar.host.url=http://localhost:9000 \
+                -Dsonar.login="SonarServer"
                 """
                 }
             }
