@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "subbu2712/my-java-app"
+        SONAR_TOKEN = "SonarServer"
     }
 
     stages {
@@ -21,12 +22,12 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarServer') {
+                withSonarQubeEnv(${SONAR_TOKEN}) {
                 sh """
                 mvn sonar:sonar \
                 -Dsonar.projectKey=my-java-app \
                 -Dsonar.host.url=http://172.31.40.130:9000 \
-                -Dsonar.login="SonarServer"
+                -Dsonar.login=$SONAR_TOKEN
                 """
                 }
             }
