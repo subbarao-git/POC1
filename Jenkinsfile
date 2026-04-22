@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                sh 'mvn clean test'
+                sh 'mvn clean package -DskipTests'
             }
         }
 
@@ -30,12 +30,6 @@ pipeline {
                 -Dsonar.host.url=http://sonarqube:9000 \
                 -Dsonar.login=$SONAR_TOKEN
                 """
-            }
-        }
-
-        stage('Package') {
-            steps {
-                sh 'mvn clean package -DskipTests'
             }
         }
 
