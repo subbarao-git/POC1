@@ -31,7 +31,8 @@
         <!-- Sonar properties -->
         <sonar.projectKey>my-java-app</sonar.projectKey>
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
-
+         <maven.compiler.source>17</maven.compiler.source>
+         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <!-- Dependencies -->
@@ -79,11 +80,6 @@
             </plugin>
 
             <!-- Maven Compiler -->
-         
-         <properties>
-             <maven.compiler.source>17</maven.compiler.source>
-             <maven.compiler.target>17</maven.compiler.target>
-         </properties>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
