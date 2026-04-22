@@ -65,12 +65,12 @@ pipeline {
                     sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST "uptime"
                       docker pull $DOCKER_IMAGE:latest
-                      docker stop myapp || true
-                      docker rm myapp || true
+                      docker stop my-java-app || true
+                      docker rm my-java-app || true
                       docker run -d \
                         --name my-java-app \
                         -p 8081:8080 \
-                        $IMAGE_NAME
+                        $DOCKER_IMAGE
                     EOF
                     '''
                 }
