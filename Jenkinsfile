@@ -20,16 +20,15 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            environment {
-                SONAR_TOKEN = credentials('SonarServer')
-            }
             steps {
+                withSonarQubeEnv('SonarServer') {
                 sh """
                 mvn sonar:sonar \
                 -Dsonar.projectKey=my-java-app \
                 -Dsonar.host.url=http://sonarqube:9000 \
                 -Dsonar.login=$SONAR_TOKEN
                 """
+                }
             }
         }
 
