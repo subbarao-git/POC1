@@ -71,7 +71,6 @@ pipeline {
                         --name my-java-app \
                         -p 8081:8080 \
                         $DOCKER_IMAGE
-                    EOF
                     '''
                 }
             }
