@@ -25,7 +25,7 @@ pipeline {
                 withSonarQubeEnv("${SONAR_TOKEN}") {
                 sh """
                 mvn sonar:sonar \
-                -Dsonar.projectKey=my-java-app1
+                -Dsonar.projectKey=my-java-app
                 """
                 }
             }
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                sh 'docker build -t $DOCKER_IMAGE'
             }
         }
 
