@@ -25,7 +25,7 @@ pipeline {
                 withSonarQubeEnv("${SONAR_TOKEN}") {
                 sh """
                 mvn sonar:sonar \
-                -Dsonar.projectKey=my-java-app
+                -Dsonar.projectKey=my-java-app1
                 """
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(
-                  credentialsId: 'dockerhub-credss',
+                  credentialsId: 'dockerhub-creds',
                   usernameVariable: 'DOCKER_USER',
                   passwordVariable: 'DOCKER_PASS'
                 )]) {
