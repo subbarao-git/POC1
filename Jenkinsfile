@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "subbu2712/my-java-app1"
         SONAR_TOKEN = "SonarServer"
+        EC2_HOST   = "ec2-35-154-196-181.ap-south-1.compute.amazonaws.com"
     }
 
     stages {
@@ -27,6 +28,14 @@ pipeline {
                 mvn sonar:sonar \
                 -Dsonar.projectKey=my-java-app
                 """
+                }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
@@ -54,6 +63,24 @@ pipeline {
                     docker login -u $DOCKER_USER -p $DOCKER_PASS
                     docker push $DOCKER_IMAGE
                     """
+                }
+            }
+        }
+        
+        stage('Deploy to EC2') {
+            steps {
+                sshagent(['ec2-ssh-key']) {
+                    sh '''
+                    ssh -o StrictHostKeyChecking=no ec2-user@$EC2_HOST << EOF
+                      docker pull $IMAGE_NAME
+                      docker stop myapp || true
+                      docker rm myapp || true
+                      docker run -d \
+                        --name myapp \
+                        -p 8081:8080 \
+                        $IMAGE_NAME
+                    EOF
+                    '''
                 }
             }
         }
