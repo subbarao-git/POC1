@@ -22,7 +22,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(${SONAR_TOKEN}) {
+                withSonarQubeEnv("${SONAR_TOKEN}") {
                 sh """
                 mvn sonar:sonar \
                 -Dsonar.projectKey=my-java-app \
