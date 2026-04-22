@@ -64,7 +64,7 @@ pipeline {
                 sshagent(credentials: ['ec2-ssh-key']) {
                     sh '''
                     ssh -o StrictHostKeyChecking=no ubuntu@$EC2_HOST "uptime"
-                      docker pull $IMAGE_NAME
+                      docker pull $IMAGE_NAME:latest
                       docker stop myapp || true
                       docker rm myapp || true
                       docker run -d \
